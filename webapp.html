@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Magic 8-Ball</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1a1a1a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 50px;
+    }
+
+    header {
+      background-color: #111;
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #00e5ff;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #00e5ff;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #00bcd4;
+    }
+
+    .response {
+      margin-top: 30px;
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 12px rgba(0,229,255,0.3);
+    }
+
+    .response h2 {
+      margin: 0;
+      font-size: 1.4em;
+      color: #00e5ff;
+    }
+
+    .question-label {
+      margin-bottom: 10px;
+      display: block;
+      font-style: italic;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🔮 Magic 8-Ball</h1>
+  </header>
+
+  <div class="container">
+    <label for="question" class="question-label">Type your question below:</label>
+    <input type="text" id="question" placeholder="Will I win the lottery?" />
+    <br />
+    <button onclick="getMagicAnswer()">Ask the 8-Ball</button>
+
+    <div class="response" id="responseBox" style="display: none;">
+      <h2 id="magicAnswer"></h2>
+    </div>
+  </div>
+
+  <script>
+    const answers = [
+      "It is certain.",
+      "Without a doubt.",
+      "You may rely on it.",
+      "Yes – definitely.",
+      "It is decidedly so.",
+      "As I see it, yes.",
+      "Most likely.",
+      "Outlook good.",
+      "Yes.",
+      "Signs point to yes.",
+      "Reply hazy, try again.",
+      "Ask again later.",
+      "Better not tell you now.",
+      "Cannot predict now.",
+      "Concentrate and ask again.",
+      "Don't count on it.",
+      "My reply is no.",
+      "My sources say no.",
+      "Outlook not so good.",
+      "Very doubtful."
+    ];
+
+    function getMagicAnswer() {
+      const input = document.getElementById('question').value.trim();
+      const responseBox = document.getElementById('responseBox');
+      const answer = document.getElementById('magicAnswer');
+
+      if (input === "") {
+        answer.textContent = "You must ask a question!";
+      } else {
+        const randomIndex = Math.floor(Math.random() * answers.length);
+        answer.textContent = answers[randomIndex];
+      }
+
+      responseBox.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
